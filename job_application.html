@@ -3,69 +3,862 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Form</title>
+
+    <title>Job Application</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #222;
+            line-height: 1.5;
+        }
+
+        /* Header */
+
+        .header {
+            background-color: #17212b;
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #cbd5df;
+            font-size: 15px;
+        }
+
+        /* Main Container */
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 35px auto;
+            background-color: white;
+            padding: 35px;
+            border: 1px solid #dfe3e7;
+            border-radius: 8px;
+        }
+
+        .intro {
+            margin-bottom: 30px;
+        }
+
+        .intro h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .intro p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Fieldsets */
+
+        fieldset {
+            border: 1px solid #d8dde2;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+        }
+
+        legend {
+            padding: 0 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #17212b;
+        }
+
+        /* Form Grid */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cfd5da;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #17212b;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        /* Radio Buttons */
+
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 5px;
+        }
+
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: normal;
+        }
+
+        .radio-option input,
+        .checkbox-option input {
+            width: auto;
+        }
+
+        /* Resume */
+
+        .file-note {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        /* Required */
+
+        .required {
+            color: #c62828;
+        }
+
+        /* Agreement */
+
+        .agreement {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .agreement input {
+            width: auto;
+            margin-top: 4px;
+        }
+
+        .agreement label {
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Buttons */
+
+        .button-area {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .reset-btn {
+            background-color: #e5e7eb;
+            color: #333;
+        }
+
+        .submit-btn {
+            background-color: #17212b;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #263746;
+        }
+
+        .reset-btn:hover {
+            background-color: #d5d8dc;
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            fieldset {
+                padding: 18px;
+            }
+
+            .button-area {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1 style="text-align: center;">Job Application Form</h1>
-    <form action="">
-        <label for="">Name: </label>
-        <br><br>
-        <input type="text" value="Anjana" required autofocus>
-        <br><br>
 
-        <label for="">Email: </label>
-        <br><br>
-        <input type="email" value="anj12@gmail.com">
-        <br><br>
+    <header class="header">
+        <h1>Job Application</h1>
+        <p>Take the next step in your career with us</p>
+    </header>
 
-        <label for="">Resume: </label>
-        <br><br>
-        <input type="file" required>
-        <br><br>
 
-        <label for="">Experience(Years): </label>
-        <br><br>
-        <input type="number" value="1" min="1">
-        <br><br>
+    <main class="container">
 
-        <label for="">Portfoliyo URL: </label>
-        <br><br>
-        <input type="url">
-        <br><br>
+        <div class="intro">
+            <h2>Apply for a Position</h2>
+            <p>
+                Please complete the application form below with accurate
+                information. Fields marked with <span class="required">*</span>
+                are required.
+            </p>
+        </div>
 
-        <label for="">Preffered Shift: </label>
-        <br><br>
-        <input type="radio" name="h">Morning
-        <input type="radio" name="h">Evening
-        <br><br>
 
-        <label for="">Expected Salary(&#8377;): </label>
-        <br><br>
-        <input type="number" value="20000" step="5000">
-        <br><br>
+        <form action="" method="post">
 
-        <label for="">Available Date: </label>
-        <br><br>
-        <input type="date">
-        <br><br>
 
-        <label for="">Skills: </label>
-        <br><br>
-        <select>
-            <option value=""></option>
-            <option value="">HTML</option>
-            <option value="">CSS</option>
-            <option value="">Javascript</option>
-        </select>
-        <br><br>
+            <!-- Personal Information -->
 
-        <label for="">Comments: </label>
-        <br><br>
-        <textarea cols="30" rows="5">Ready to Join</textarea>
-        <br><br>
-        
-        <button style="background-color: blue; color: antiquewhite;">Submit</button>
+            <fieldset>
 
-    </form>
+                <legend>Personal Information</legend>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="name">
+                            Full Name <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Enter your full name"
+                            required
+                            autofocus
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="phone">
+                            Phone Number <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="Enter your phone number"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="email">
+                            Email Address <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            required
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="city">Current City</label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            name="city"
+                            placeholder="Enter your city"
+                        >
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Job Information -->
+
+            <fieldset>
+
+                <legend>Job Information</legend>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="position">
+                            Position Applying For <span class="required">*</span>
+                        </label>
+
+                        <select id="position" name="position" required>
+
+                            <option value="">Select a position</option>
+
+                            <option value="frontend">
+                                Frontend Developer
+                            </option>
+
+                            <option value="python">
+                                Python Developer
+                            </option>
+
+                            <option value="fullstack">
+                                Full Stack Developer
+                            </option>
+
+                            <option value="intern">
+                                Software Developer Intern
+                            </option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="experience">
+                            Experience (Years)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="experience"
+                            name="experience"
+                            min="0"
+                            step="0.5"
+                            placeholder="e.g. 1"
+                        >
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Employment Type <span class="required">*</span>
+                        </label>
+
+                        <div class="radio-group">
+
+                            <label class="radio-option">
+                                <input
+                                    type="radio"
+                                    name="employment"
+                                    value="full-time"
+                                    required
+                                >
+                                Full Time
+                            </label>
+
+                            <label class="radio-option">
+                                <input
+                                    type="radio"
+                                    name="employment"
+                                    value="part-time"
+                                >
+                                Part Time
+                            </label>
+
+                            <label class="radio-option">
+                                <input
+                                    type="radio"
+                                    name="employment"
+                                    value="internship"
+                                >
+                                Internship
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Preferred Work Mode</label>
+
+                        <div class="radio-group">
+
+                            <label class="radio-option">
+                                <input
+                                    type="radio"
+                                    name="work-mode"
+                                    value="onsite"
+                                >
+                                On-site
+                            </label>
+
+                            <label class="radio-option">
+                                <input
+                                    type="radio"
+                                    name="work-mode"
+                                    value="remote"
+                                >
+                                Remote
+                            </label>
+
+                            <label class="radio-option">
+                                <input
+                                    type="radio"
+                                    name="work-mode"
+                                    value="hybrid"
+                                >
+                                Hybrid
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Qualifications and Skills -->
+
+            <fieldset>
+
+                <legend>Qualifications & Skills</legend>
+
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+
+                        <label for="qualification">
+                            Highest Qualification <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="qualification"
+                            name="qualification"
+                            required
+                        >
+
+                            <option value="">
+                                Select your qualification
+                            </option>
+
+                            <option value="btech">
+                                B.Tech / B.E
+                            </option>
+
+                            <option value="bca">
+                                BCA
+                            </option>
+
+                            <option value="mca">
+                                MCA
+                            </option>
+
+                            <option value="mtech">
+                                M.Tech / M.E
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label>
+                            Technical Skills
+                        </label>
+
+                        <div class="checkbox-group">
+
+                            <label class="checkbox-option">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="html"
+                                >
+                                HTML
+                            </label>
+
+                            <label class="checkbox-option">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="css"
+                                >
+                                CSS
+                            </label>
+
+                            <label class="checkbox-option">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="javascript"
+                                >
+                                JavaScript
+                            </label>
+
+                            <label class="checkbox-option">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="python"
+                                >
+                                Python
+                            </label>
+
+                            <label class="checkbox-option">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="sql"
+                                >
+                                SQL
+                            </label>
+
+                            <label class="checkbox-option">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="react"
+                                >
+                                React
+                            </label>
+
+                            <label class="checkbox-option">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="fastapi"
+                                >
+                                FastAPI
+                            </label>
+
+                            <label class="checkbox-option">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="git"
+                                >
+                                Git
+                            </label>
+
+                            <label class="checkbox-option">
+                                <input
+                                    type="checkbox"
+                                    name="skills"
+                                    value="github"
+                                >
+                                GitHub
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Professional Details -->
+
+            <fieldset>
+
+                <legend>Professional Details</legend>
+
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+
+                        <label for="resume">
+                            Upload Resume <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="file"
+                            id="resume"
+                            name="resume"
+                            accept=".pdf,.doc,.docx"
+                            required
+                        >
+
+                        <p class="file-note">
+                            Accepted formats: PDF, DOC, DOCX
+                        </p>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="portfolio">
+                            Portfolio URL
+                        </label>
+
+                        <input
+                            type="url"
+                            id="portfolio"
+                            name="portfolio"
+                            placeholder="https://yourportfolio.com"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="salary">
+                            Expected Salary (₹)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="salary"
+                            name="salary"
+                            min="0"
+                            step="5000"
+                            placeholder="e.g. 25000"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="available">
+                            Available From
+                        </label>
+
+                        <input
+                            type="date"
+                            id="available"
+                            name="available"
+                        >
+
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Work Preferences -->
+
+            <fieldset>
+
+                <legend>Work Preferences</legend>
+
+                <div class="form-group">
+
+                    <label>
+                        Preferred Working Shift
+                    </label>
+
+                    <div class="radio-group">
+
+                        <label class="radio-option">
+                            <input
+                                type="radio"
+                                name="shift"
+                                value="morning"
+                            >
+                            Morning
+                        </label>
+
+                        <label class="radio-option">
+                            <input
+                                type="radio"
+                                name="shift"
+                                value="evening"
+                            >
+                            Evening
+                        </label>
+
+                        <label class="radio-option">
+                            <input
+                                type="radio"
+                                name="shift"
+                                value="night"
+                            >
+                            Night
+                        </label>
+
+                        <label class="radio-option">
+                            <input
+                                type="radio"
+                                name="shift"
+                                value="flexible"
+                            >
+                            Flexible
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- About You -->
+
+            <fieldset>
+
+                <legend>About You</legend>
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Cover Letter / Additional Information
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        placeholder="Tell us briefly about yourself, your experience, projects, or why you are interested in this position..."
+                    ></textarea>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Agreement -->
+
+            <div class="agreement">
+
+                <input
+                    type="checkbox"
+                    id="agreement"
+                    name="agreement"
+                    required
+                >
+
+                <label for="agreement">
+                    I confirm that the information provided in this
+                    application is accurate and complete.
+                    <span class="required">*</span>
+                </label>
+
+            </div>
+
+
+
+            <!-- Buttons -->
+
+            <div class="button-area">
+
+                <button
+                    type="reset"
+                    class="reset-btn"
+                >
+                    Clear Form
+                </button>
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Submit Application
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <footer>
+        © 2026 Career Portal. All rights reserved.
+    </footer>
+
 </body>
 </html>
