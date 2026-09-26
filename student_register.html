@@ -3,78 +3,860 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Form</title>
+
+    <title>Student Registration Form</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef3f7;
+            color: #263238;
+            line-height: 1.5;
+        }
+
+        /* Header */
+
+        .header {
+            background-color: #0f4c5c;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .header-content {
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #d8e8ec;
+        }
+
+        /* Main */
+
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 35px auto;
+        }
+
+        .form-heading {
+            margin-bottom: 25px;
+        }
+
+        .form-heading h2 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .form-heading p {
+            color: #68757d;
+            font-size: 14px;
+        }
+
+        /* Fieldsets */
+
+        fieldset {
+            background-color: white;
+            border: 1px solid #d5dde2;
+            border-left: 4px solid #0f4c5c;
+            padding: 25px;
+            margin-bottom: 22px;
+        }
+
+        legend {
+            background-color: #0f4c5c;
+            color: white;
+            padding: 7px 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Grid */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Labels */
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: #d32f2f;
+        }
+
+        /* Inputs */
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid #c8d1d6;
+            border-radius: 3px;
+            background-color: #fafcfd;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #0f4c5c;
+            background-color: white;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Radio & Checkbox */
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 5px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+
+        .option input {
+            width: auto;
+        }
+
+        /* File */
+
+        input[type="file"] {
+            background-color: white;
+            padding: 9px;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #78858c;
+            margin-top: 5px;
+        }
+
+        /* Terms */
+
+        .terms {
+            background-color: white;
+            border: 1px solid #d5dde2;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .terms-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .terms-label input {
+            width: auto;
+            margin-top: 4px;
+        }
+
+        /* Buttons */
+
+        .button-area {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        button {
+            border: none;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+
+        .reset {
+            background-color: #dfe5e8;
+            color: #263238;
+        }
+
+        .submit {
+            background-color: #0f4c5c;
+            color: white;
+        }
+
+        .reset:hover {
+            background-color: #cbd4d9;
+        }
+
+        .submit:hover {
+            background-color: #0b3945;
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #748087;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: 94%;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: auto;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+            fieldset {
+                padding: 20px;
+            }
+
+            .button-area {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
-    <h1 style="text-align: center;">Student Registration Form</h1>
-    <form action="">
-        <label for="">Full Name: </label>
-        <br><br>
-        <input type="text" required autofocus placeholder="Enter name">
-        <br><br>
 
-        <label for="">Email: </label>
-        <br><br>
-        <input type="email">
-        <br><br>
+    <header class="header">
 
-        <label for="">Password: </label>
-        <br><br>
-        <input type="password" pattern="(?=*[A-Z])(?=*[a-z])(?=*[0-9]).{6}">
-        <br><br>
+        <div class="header-content">
 
-        <label for="">Age: </label>
-        <br><br>
-        <input type="number" min="17" max="22">
-        <br><br>
+            <h1>Student Registration</h1>
 
-        <label for="">Gender: </label>
-        <br><br>
-        <input type="radio" name="h">Male
-        <input type="radio" name="h">Female
-        <input type="radio" name="h">Others
-        <br><br>
+            <p>
+                Complete the form below to register as a student
+            </p>
 
-        <label for="">Date of Birth: </label>
-        <br><br>
-        <input type="date">
-        <br><br>
+        </div>
 
-        <label for="">Mobile Number: </label>
-        <br><br>
-        <input type="tele" pattern="[0-9]{10}">
-        <br><br>
+    </header>
 
-        <label for="">City: </label>
-        <br><br>
-        <select>
-            <option value=""></option>
-            <option value="">Kochi</option>
-            <option value="">Banglore</option>
-            <option value="">Hyderabad</option>
-            <option value="">Mumbai</option>
-        </select>
-        <br><br>
 
-        <label for="">Skills: </label>
-        <br><br>
-        <input type="checkbox">HTML
-        <input type="checkbox">CSS
-        <input type="checkbox">Javascript
-        <br><br>
+    <main class="container">
 
-        <label for="">Upload Photo: </label>
-        <br><br>
-        <input type="file">
-        <br><br>
+        <div class="form-heading">
 
-        <label for="">Address: </label>
-        <br><br>
-        <textarea cols="30" rows="5"></textarea>
-        <br><br>
-        
-        <button style="background-color: blue; color: antiquewhite;">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button style="background-color: antiquewhite; color:black;">Reset</button>
-    </form>
+            <h2>Student Registration Form</h2>
+
+            <p>
+                Please provide your personal and academic information
+                accurately.
+            </p>
+
+        </div>
+
+
+        <form action="">
+
+
+            <!-- Personal Information -->
+
+            <fieldset>
+
+                <legend>Personal Information</legend>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="fullname">
+                            Full Name <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullname"
+                            name="fullname"
+                            placeholder="Enter your full name"
+                            required
+                            autofocus
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="example@email.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Create a password"
+                            pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{6,}"
+                            title="Password must contain at least one uppercase letter, one lowercase letter, one number, and be at least 6 characters long."
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="age">
+                            Age <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            min="17"
+                            max="22"
+                            placeholder="17 - 22"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Gender
+                        </label>
+
+                        <div class="options">
+
+                            <label class="option">
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="male"
+                                >
+                                Male
+                            </label>
+
+                            <label class="option">
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="female"
+                                >
+                                Female
+                            </label>
+
+                            <label class="option">
+                                <input
+                                    type="radio"
+                                    name="gender"
+                                    value="other"
+                                >
+                                Other
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="dob">
+                            Date of Birth <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                            name="dob"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Contact Information -->
+
+            <fieldset>
+
+                <legend>Contact Information</legend>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="mobile">
+                            Mobile Number <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="mobile"
+                            name="mobile"
+                            placeholder="10-digit mobile number"
+                            pattern="[0-9]{10}"
+                            title="Please enter a 10-digit mobile number."
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="city">
+                            City <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="city"
+                            name="city"
+                            required
+                        >
+
+                            <option value="">
+                                Select your city
+                            </option>
+
+                            <option value="kochi">
+                                Kochi
+                            </option>
+
+                            <option value="bangalore">
+                                Bangalore
+                            </option>
+
+                            <option value="hyderabad">
+                                Hyderabad
+                            </option>
+
+                            <option value="mumbai">
+                                Mumbai
+                            </option>
+
+                            <option value="chennai">
+                                Chennai
+                            </option>
+
+                            <option value="delhi">
+                                Delhi
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            name="address"
+                            placeholder="Enter your complete address"
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Academic Information -->
+
+            <fieldset>
+
+                <legend>Academic Information</legend>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="course">
+                            Course <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="course"
+                            name="course"
+                            required
+                        >
+
+                            <option value="">
+                                Select your course
+                            </option>
+
+                            <option value="btech">
+                                B.Tech
+                            </option>
+
+                            <option value="bca">
+                                BCA
+                            </option>
+
+                            <option value="bsc">
+                                B.Sc
+                            </option>
+
+                            <option value="mca">
+                                MCA
+                            </option>
+
+                            <option value="mtech">
+                                M.Tech
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="department"
+                            name="department"
+                            required
+                        >
+
+                            <option value="">
+                                Select department
+                            </option>
+
+                            <option value="cse">
+                                Computer Science & Engineering
+                            </option>
+
+                            <option value="ece">
+                                Electronics & Communication
+                            </option>
+
+                            <option value="eee">
+                                Electrical & Electronics
+                            </option>
+
+                            <option value="me">
+                                Mechanical Engineering
+                            </option>
+
+                            <option value="ce">
+                                Civil Engineering
+                            </option>
+
+                            <option value="other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="rollno">
+                            Roll Number
+                        </label>
+
+                        <input
+                            type="text"
+                            id="rollno"
+                            name="rollno"
+                            placeholder="Enter roll number"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="year">
+                            Current Year
+                        </label>
+
+                        <select
+                            id="year"
+                            name="year"
+                        >
+
+                            <option value="">
+                                Select year
+                            </option>
+
+                            <option value="first">
+                                First Year
+                            </option>
+
+                            <option value="second">
+                                Second Year
+                            </option>
+
+                            <option value="third">
+                                Third Year
+                            </option>
+
+                            <option value="fourth">
+                                Fourth Year
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Skills -->
+
+            <fieldset>
+
+                <legend>Skills & Interests</legend>
+
+                <div class="form-group">
+
+                    <label>
+                        Technical Skills
+                    </label>
+
+                    <div class="options">
+
+                        <label class="option">
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="html"
+                            >
+                            HTML
+                        </label>
+
+                        <label class="option">
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="css"
+                            >
+                            CSS
+                        </label>
+
+                        <label class="option">
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="javascript"
+                            >
+                            JavaScript
+                        </label>
+
+                        <label class="option">
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="python"
+                            >
+                            Python
+                        </label>
+
+                        <label class="option">
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="java"
+                            >
+                            Java
+                        </label>
+
+                        <label class="option">
+                            <input
+                                type="checkbox"
+                                name="skills"
+                                value="sql"
+                            >
+                            SQL
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Upload -->
+
+            <fieldset>
+
+                <legend>Student Photo</legend>
+
+                <div class="form-group">
+
+                    <label for="photo">
+                        Upload Photo <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="file"
+                        id="photo"
+                        name="photo"
+                        accept=".jpg,.jpeg,.png"
+                        required
+                    >
+
+                    <p class="note">
+                        Accepted formats: JPG, JPEG and PNG.
+                    </p>
+
+                </div>
+
+            </fieldset>
+
+
+
+            <!-- Confirmation -->
+
+            <div class="terms">
+
+                <label class="terms-label">
+
+                    <input
+                        type="checkbox"
+                        name="agreement"
+                        required
+                    >
+
+                    <span>
+                        I confirm that the information provided in this
+                        registration form is accurate and complete.
+                    </span>
+
+                </label>
+
+            </div>
+
+
+
+            <!-- Buttons -->
+
+            <div class="button-area">
+
+                <button
+                    type="reset"
+                    class="reset"
+                >
+                    Reset Form
+                </button>
+
+                <button
+                    type="submit"
+                    class="submit"
+                >
+                    Register Now
+                </button>
+
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <footer>
+        © 2026 Student Registration Portal
+    </footer>
+
 </body>
 </html>
