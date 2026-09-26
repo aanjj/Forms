@@ -1,63 +1,673 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Order</title>
+
+    <title>Food Ordering Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f5f7;
+            color: #333;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+        }
+
+        /* Header */
+
+        .header {
+            background: #e85d04;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        /* Form */
+
+        form {
+            padding: 35px;
+        }
+
+        .section {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #222;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .row {
+            display: flex;
+            gap: 18px;
+        }
+
+        .field {
+            flex: 1;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="time"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d5d5d5;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus,
+        input[type="time"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #e85d04;
+            box-shadow: 0 0 0 3px rgba(232, 93, 4, 0.10);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Food Items */
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .food-option {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .food-option:hover {
+            border-color: #e85d04;
+            background: #fff8f3;
+        }
+
+        .food-option input {
+            margin-right: 8px;
+        }
+
+        .food-option span {
+            font-size: 14px;
+        }
+
+        /* Quantity */
+
+        .quantity {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d5d5d5;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        /* Spice */
+
+        .spice {
+            width: 100%;
+            accent-color: #e85d04;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* Extra Preferences */
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .options label {
+            font-weight: normal;
+            background: #f7f7f7;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .options input {
+            margin-right: 6px;
+        }
+
+        /* Payment */
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .payment-option {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .payment-option:hover {
+            border-color: #e85d04;
+            background: #fff8f3;
+        }
+
+        .payment-option input {
+            margin-right: 5px;
+        }
+
+        /* Coupon */
+
+        .coupon {
+            display: flex;
+            gap: 10px;
+        }
+
+        .coupon input {
+            flex: 1;
+        }
+
+        .coupon button {
+            padding: 0 20px;
+            border: none;
+            border-radius: 8px;
+            background: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Submit */
+
+        .order-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 9px;
+            background: #e85d04;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .order-button:hover {
+            background: #c94d00;
+        }
+
+        .note {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 15px;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            form {
+                padding: 22px;
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-options {
+                grid-template-columns: 1fr;
+            }
+
+            .coupon {
+                flex-direction: column;
+            }
+
+            .coupon button {
+                padding: 12px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <h1 style="text-align: center;">Food Ordering Form</h1>
-    <form>
-        <label>Customer Name: </label>
-        <br><br>
-        <input type="text" value="Anjana" autofocus>
-        <br><br>
 
-        <label>Restaurant: </label>
-        <br><br>
-        <select>
-            <option value=""></option>
-            <option value="">Indian</option>
-            <option value="">Chinese</option>
-            <option value="">Arabian</option>
-        </select>
-        <br><br>
+    <div class="container">
 
-        <label for="">Food Items: </label>
-        <br><br>
-        <input type="checkbox">Biryani
-        <input type="checkbox">Fried Rice
-        <input type="checkbox">Mnadi
-        <input type="checkbox">Noodles
-        <br><br>
+        <div class="header">
+            <h1>🍽️ Order Your Favorite Food</h1>
+            <p>Fresh food delivered straight to your doorstep</p>
+        </div>
 
-        <label for="">Spice Level: </label>
-        <input type="range">
-        <br><br>
+        <form>
 
-        <label for="">Delivery time: </label>
-        <br><br>
-        <input type="time">
-        <br><br>
+            <!-- Customer Details -->
 
-        <label for="">Address: </label>
-        <br><br>
-        <textarea cols="30" rows="5">Type your address here...</textarea>
-        <br><br>
+            <div class="section">
 
-        <label>Payment Method: </label>
-        <br><br>
-        <input type="radio">UPI
-        <input type="radio">Card
-        <input type="radio">Cash
-        <br><br>
+                <h2 class="section-title">👤 Customer Details</h2>
 
-        <label>Coupon Code: </label>
-        <br><br>
-        <input type="text" value="SAVE50">
-        <br><br>
+                <div class="row">
 
-        <button style="color: wheat; background-color: green;">Place Order</button>
-    </form>
+                    <div class="field">
+                        <label for="name">Full Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="+91 98765 43210"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="field">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="example@email.com"
+                    >
+                </div>
+
+            </div>
+
+
+            <!-- Delivery Details -->
+
+            <div class="section">
+
+                <h2 class="section-title">📍 Delivery Details</h2>
+
+                <div class="field">
+
+                    <label for="address">Delivery Address</label>
+
+                    <textarea
+                        id="address"
+                        placeholder="House/Flat number, street, area..."
+                        required
+                    ></textarea>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="field">
+
+                        <label for="city">City</label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter your city"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="field">
+
+                        <label for="pincode">PIN Code</label>
+
+                        <input
+                            type="text"
+                            id="pincode"
+                            placeholder="682001"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="field">
+
+                    <label for="delivery">Preferred Delivery Time</label>
+
+                    <input
+                        type="time"
+                        id="delivery"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Restaurant -->
+
+            <div class="section">
+
+                <h2 class="section-title">🍴 Restaurant & Food</h2>
+
+                <div class="field">
+
+                    <label for="restaurant">Choose Restaurant</label>
+
+                    <select id="restaurant" required>
+
+                        <option value="">Select a restaurant</option>
+
+                        <option value="spice-kitchen">
+                            Spice Kitchen
+                        </option>
+
+                        <option value="tasty-bites">
+                            Tasty Bites
+                        </option>
+
+                        <option value="arabian-grill">
+                            Arabian Grill
+                        </option>
+
+                        <option value="dragon-house">
+                            Dragon House
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Select Food Items</label>
+
+                    <div class="food-grid">
+
+                        <label class="food-option">
+                            <input type="checkbox" name="food">
+                            <span>🍗 Chicken Biryani</span>
+                        </label>
+
+                        <label class="food-option">
+                            <input type="checkbox" name="food">
+                            <span>🍚 Fried Rice</span>
+                        </label>
+
+                        <label class="food-option">
+                            <input type="checkbox" name="food">
+                            <span>🍖 Chicken Mandi</span>
+                        </label>
+
+                        <label class="food-option">
+                            <input type="checkbox" name="food">
+                            <span>🍜 Chicken Noodles</span>
+                        </label>
+
+                        <label class="food-option">
+                            <input type="checkbox" name="food">
+                            <span>🍕 Chicken Pizza</span>
+                        </label>
+
+                        <label class="food-option">
+                            <input type="checkbox" name="food">
+                            <span>🍔 Chicken Burger</span>
+                        </label>
+
+                        <label class="food-option">
+                            <input type="checkbox" name="food">
+                            <span>🌯 Shawarma</span>
+                        </label>
+
+                        <label class="food-option">
+                            <input type="checkbox" name="food">
+                            <span>🥘 Butter Chicken</span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="quantity">Quantity</label>
+
+                    <select id="quantity">
+
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5+</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Food Preferences -->
+
+            <div class="section">
+
+                <h2 class="section-title">🌶️ Food Preferences</h2>
+
+                <div class="field">
+
+                    <label for="spice">Spice Level</label>
+
+                    <input
+                        type="range"
+                        id="spice"
+                        class="spice"
+                        min="0"
+                        max="10"
+                        value="5"
+                    >
+
+                    <div class="range-labels">
+                        <span>Mild</span>
+                        <span>Medium</span>
+                        <span>Very Spicy</span>
+                    </div>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Extra Preferences</label>
+
+                    <div class="options">
+
+                        <label>
+                            <input type="checkbox">
+                            Extra Cheese
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Extra Sauce
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            Extra Spicy
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            No Onion
+                        </label>
+
+                        <label>
+                            <input type="checkbox">
+                            No Garlic
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Payment -->
+
+            <div class="section">
+
+                <h2 class="section-title">💳 Payment Method</h2>
+
+                <div class="payment-options">
+
+                    <label class="payment-option">
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="upi"
+                            required
+                        >
+                        UPI
+                    </label>
+
+                    <label class="payment-option">
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="card"
+                        >
+                        Card
+                    </label>
+
+                    <label class="payment-option">
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="cash"
+                        >
+                        Cash
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- Coupon -->
+
+            <div class="section">
+
+                <h2 class="section-title">🎟️ Coupon</h2>
+
+                <div class="coupon">
+
+                    <input
+                        type="text"
+                        placeholder="Enter coupon code"
+                    >
+
+                    <button type="button">
+                        Apply
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button
+                type="submit"
+                class="order-button"
+            >
+                Place Order
+            </button>
+
+            <p class="note">
+                🔒 Your information is safe and secure.
+            </p>
+
+        </form>
+
+    </div>
+
 </body>
+
 </html>
+```
